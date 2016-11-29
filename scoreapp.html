@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title> Score App</title>
+  <title> Score App!</title>
 
 	<link rel="stylesheet" href="lib/bootstrap-3.3.4-dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="lib/bootstrap-3.3.4-dist/css/bootstrap-theme.min.css">
@@ -10,20 +10,25 @@
   <style href="scoreapp.css"></style>
 </head>
 <body>
-  <h1>Testing Again!</h1>
+  Select a part:
   <select id="part">
+    <option></option>
     <option>A.JPG</option>
     <option>B.JPG</option>
     <option>C.JPG</option>
     <option>D.JPG</option>
   </select>
-  <br>
+  <!-- cantus, altus, tenor, bassus -->
+
   <button id="copy">Init Part</button>
-
-
+  ...
+  Left Offset:<input type="text" id="leftOffset">
+  ....
+  Line Shift:<input type="text" id="lineShift">
+  <hr>
+  <img id="source" src="images/A.JPG" width="0" height="0" alt="part">
 
   <canvas id="thePart" width="10" height="10"></canvas>
-  <img id="source" src="images/A.JPG" width="100%" alt="part">
   <script src="lib/scoreapp.js"></script>
 </body>
 </html>
