@@ -1,0 +1,10 @@
+canvas {
+  border: thick solid green;
+  background-color: red;
+  width:100%;
+  height:400px
+}
+
+body {
+  background-color: blue;
+}
