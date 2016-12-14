@@ -28,38 +28,50 @@
 <body>
 	<script id="template1" type="x-tmpl-mustache">
 			{{#videos}}
-				<video  width ="19%" muted="true" class="view" onclick="show2({{id}})" id="{{id}}">
+				<video  width ="19%" muted="true" class="view" onclick="show2({{id}});show3({{id}})" id="{{id}}">
 					<source src= "{{&src}}">
 				</video>
 		    {{/videos}}
 	</script>
 
+  <script id="template0" type="x-tmpl-mustache">
+			{{#parts}}
+				<video  width ="19%" muted="true" class="view" onclick="show3({{id}})" id="{{id}}">
+					<source src= "{{&src}}">
+				</video>
+		    {{/parts}}
+	</script>
+
 			<div id="scrub"></div>
 
 <div class = "container">
-<div class="text-center bg-info">Psalm 128 (Beati omnes) by Stephan Zirler, published in 1569 in Nuremberg</div>
+
+    <div class="text-center bg-info">
+       Psalm 128 (Beati omnes) by Stephan Zirler, published in 1569 in Nuremberg
+    </div>
 
 
     <div class="row">
-
         <div class="col-md-11">
-	        <div>
-				<video  width="100%" id= 'FullScore' controls autoplay>
-					<source src= 'video/cantus.mov'>
-				</video>
-			</div>
-			<div id="target1">target1</div>
 
 
+	          <div id="target0">target0
+		    	  </div>
+            <hr>
+            <video  width="100%" height="5" id= 'FullScore' controls autoplay>
+                 <source src= 'video/cantus.mov'>
+            </video>
+            <hr>
+			      <div id="target1">target
+            </div>
         </div>
 
-		<div class="col-md-1">
-			<div id="target2" class="text-center">target2</div>
-		</div>
-
+	    	<div class="col-md-1">
+			      <div id="target2" class="text-center">target2</div>
+		    </div>
     </div>
+
 </div>
-<br/>
 </body>
 
     <script src="lib/musicapp.js"></script>
