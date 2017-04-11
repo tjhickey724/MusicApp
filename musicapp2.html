@@ -2,25 +2,47 @@
 <head>
   <title> Score App!</title>
 
-	<link rel="stylesheet" href="lib/bootstrap-3.3.4-dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="lib/bootstrap-3.3.4-dist/css/bootstrap-theme.min.css">
+  <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+	<link rel="stylesheet" href="lib/bootstrap-4.0.0-alpha.6-dist/css/bootstrap.min.css">
+	<!--
+  <link rel="stylesheet" href="lib/bootstrap-4.0.0-alpha.6-dist/css/bootstrap-theme.min.css">
+-->
   <link rel="stylesheet" href="stylesheets/musicapp2.css">
-	<script src="lib/jquery-2.1.4.min.js"></script>
-	<script src="lib/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+
+	<!-- <script src="lib/jquery-2.1.4.min.js"></script>  -->
+
   <script src="pieces/zirlerMotet/animations/altus.js"></script>
   <script src="pieces/zirlerMotet/animations/cantus.js"></script>
   <script src="pieces/zirlerMotet/animations/bassus.js"></script>
   <script src="pieces/zirlerMotet/animations/tenor.js"></script>
     <script src="pieces/zirlerMotet/animations/score.js"></script>
 
+
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+
+ <script src="lib/bootstrap-4.0.0-alpha.6-dist/js/bootstrap.min.js"></script>
+ <script src="lib/rangeslider.js"></script>
   <!-- http://rangeslider.js.org/ -->
-  <script src="lib/rangeslider.js"></script>
+
+
+
 
   <style href="stylesheets/musicapp2.css"></style>
+  <!--
   <style href="stylesheets/rangeslider.css"></style>
+-->
 </head>
 <body>
-  <div>
+<div class="container-fluid">
+
+
+
+  <div class="row">
+    <div class="col-lg-6">
       <hr>
       <video   width = "15%" id= 'score' class="musicvideo">
            <source src= 'pieces/zirlerMotet/videos/Master.mp4'>
@@ -37,28 +59,25 @@
       <video   width = "15%" id= 'bassus' class="musicvideo">
            <source src= 'pieces/zirlerMotet/videos/Bassus.mp4'>
       </video>
-    </div>
   </div>
-  <div >
+
+  <div class="col-lg-6" id="partdiv">
     <input
       id="timeSlider"
       type="range"
-      min="0"                    // default 0
-      max="100"                  // default 100
-      step="1"                   // default 1
-      value="0"                 // default min + (max-min)/2
-      data-orientation="vertical" // default horizontal
-  >
-
-  </div>
-<div>
-
-
-    <br>
+      min="0"
+      max="100"
+      step="1"
+      value="0"
+      data-orientation="horizontal"
+      width="100%"
+  ><br>
 
     <img id="source" src="" width="0" height="0" alt="part">
 
-    <canvas id="thePart" width="10" height="10"></canvas>
+    <canvas id="thePart" width="100%"></canvas>
+  </div>
+</div>
 
     <audio src="pieces/zirlerMotet/videos/MasterAudio.m4a" id="audio" name="audio">
         <p>Your browser does not support the <code>audio</code> element.</p>
@@ -80,6 +99,9 @@
         // Usefull if you changed some attributes e.g. `min` or `max` etc.
         //$('input[type="range"]').rangeslider('update', true);
     </script>
+
+
+
 </div>
 </body>
 </html>
