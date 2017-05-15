@@ -49,6 +49,10 @@
     -moz-border-radius: 5px;
 }
 
+#timeSlider{
+  width:100%
+}
+
 .libx-tooltip p {
     /* override default 1em margin to keep paragraphs inside a tooltip closer together. */
     margin: .2em;
@@ -63,8 +67,16 @@
 
   <body>
     <div class="container-fluid">
-
-
+      <span id="theTime">0.00</span>
+      <input
+        id="timeSlider"
+        type="range"
+        min="0"                    // default 0
+        max="100"                  // default 100
+        step="1"                   // default 1
+        value="0"                 // default min + (max-min)/2
+        data-orientation="vertical" // default horizontal
+    >
         <div class="row">
           <div class="col-xl-6">
             <hr>
@@ -86,15 +98,7 @@
         </div>
 
         <div class="col-xl-6" id="partdiv">
-          <input
-            id="timeSlider"
-            type="range"
-            min="0"                    // default 0
-            max="100"                  // default 100
-            step="1"                   // default 1
-            value="0"                 // default min + (max-min)/2
-            data-orientation="vertical" // default horizontal
-        >
+
 
           <img id="source" src="" width="0" height="0" alt="part">
 
