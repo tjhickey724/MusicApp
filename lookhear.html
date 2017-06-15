@@ -65,6 +65,10 @@ This version uses the flexbox CSS style with no bootstrap ...
 
 <style type="text/css">
 
+body {
+  background-color: brown
+}
+
 div {
   padding:0px;
   margin:0px;
@@ -108,10 +112,14 @@ div {
 .video{
   padding:0px;
   margin:0px;
-  margin-left:30%;
+  margin-top:20px;
+  padding-right:20%;
+  border-top:thin solid blue;
   align-self:auto;
 
 }
+
+
 
 .slider{
   width:80%
@@ -123,7 +131,12 @@ div {
 }
 
 .part{
-  width:100%
+  width:100%;
+
+}
+
+#theTime {
+  font-size:10pt
 }
 
 video{
@@ -167,6 +180,10 @@ body{
 
             <video   width = "15%" id= 'score' class="musicvideo noPadding">
                  <source id="score-source" src= 'pieces/ortoMotet/videos/Master.mp4'>
+            </video>
+
+            <video   width = "15%" id= 'mastermenu' class="musicvideo noPadding">
+                 <source id="mastermenu-source" src= 'pieces/ortoMotet/videos/MasterMenu.mp4'>
             </video>
 
             <video   width = "15%" id= 'cantus' class="musicvideo noPadding">

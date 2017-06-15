@@ -1,5 +1,18 @@
-Thu 7/1/2017
+Thu 6/15/2017
+Goals:
+1) Work on the view in the musicapp.html
+  * allow user to change the relative proportion of the window used for video or partModel
+    try to use a horizontal bar ... (elastic windows?)
+  * remove unneeded space at the top of the score or part
+  * add a horizontal/vertical layout chooser menu item
+  * fix issues when piece ends.... allow slider movement to restart
+  * find timing issues ....
+  * reset image size upon reloading
+  
 
+
+****************************************************************
+Thu 6/1/2017
 Goals:
 1) create musicapp4a which will allow the user to switch the pieces (more work ...)
    * switch the boxsize
