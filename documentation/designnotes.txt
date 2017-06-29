@@ -1,5 +1,12 @@
-<<<<<<< HEAD
+
 Thu 7/1/2017
+1. Fix it so it starts nicely with 40% 40% 20%
+2. Add pause button
+3. Fix behavior when piece ends
+4. Allow for description of piece to appear in east pane
+5. Fix width of the video
+Get to a Beta Version ASAP.... Ship date is 7/21/2017
+
 
 =======
 Thu 6/15/2017
@@ -12,12 +19,10 @@ Goals:
   * fix issues when piece ends.... allow slider movement to restart
   * find timing issues ....
   * reset image size upon reloading
-  
 
 
-****************************************************************
 Thu 6/1/2017
->>>>>>> 3f678282df09a05b07165816f5b9ae295fbcfa10
+
 Goals:
 1) create musicapp4a which will allow the user to switch the pieces (more work ...)
    * switch the boxsize
