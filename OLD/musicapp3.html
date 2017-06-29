@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)https://v4-alpha.getbootstrap.com/examples/grid/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://v4-alpha.getbootstrap.com/favicon.ico">
+
+    <title>Grid Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./demo_files/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./demo_files/grid.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" crossorigin="anonymous"></script>
+
+      <script src="pieces/zirlerMotet/animations/altus.js"></script>
+      <script src="pieces/zirlerMotet/animations/cantus.js"></script>
+      <script src="pieces/zirlerMotet/animations/bassus.js"></script>
+      <script src="pieces/zirlerMotet/animations/tenor.js"></script>
+        <script src="pieces/zirlerMotet/animations/score.js"></script>
+
+ <script src="lib/rangeslider.js"></script>
+  <style type="text/css">/**
+ * Style sheet used by new LibX tooltip code
+ */
+
+/* We insert a <div> with libx-tooltip style under the body.
+ * This will inherit body's style - we can't afford to inherit undesirable
+ * styles and we must redefine what we need.  OTOH, some things, e.g.
+ * font-size, might be ok to be inherited to stay within the page's tone.
+ */
+.libx-tooltip {
+    display: none;
+    overflow: visible;
+    padding: 5px;
+    z-index: 100;
+    background-color: #eee;
+    color: #000;
+    font-weight: normal;
+    font-style: normal;
+    text-align: left;
+    border: 2px solid #666;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+
+#timeSlider{
+  width:100%
+}
+
+.libx-tooltip p {
+    /* override default 1em margin to keep paragraphs inside a tooltip closer together. */
+    margin: .2em;
+}
+</style><style type="text/css">/**
+ * Style sheet used by LibX autolinking code
+ */
+.libx-autolink {
+}
+
+</style></head>
+
+  <body>
+    <div class="container-fluid">
+      <select id="thePiece" onChange="changePiece()">
+        <option value"orto">De Orto Motet</option>
+        <option value="zirler">Zirler Motet</option>
+
+      </select>
+      <span id="theTime">0.00</span>
+      <input
+        id="timeSlider"
+        type="range"
+        min="0"                    // default 0
+        max="100"                  // default 100
+        step="1"                   // default 1
+        value="0"                 // default min + (max-min)/2
+        data-orientation="vertical" // default horizontal
+    >
+        <div class="row">
+          <div class="col-xl-6">
+            <hr>
+            <video   width = "15%" id= 'score' class="musicvideo">
+                 <source src= 'pieces/zirlerMotet/videos/Master.mp4'>
+            </video>
+            <video   width = "15%" id= 'altus' class="musicvideo">
+                 <source src= 'pieces/zirlerMotet/videos/Altus.mp4'>
+            </video>
+            <video   width = "15%" id= 'cantus' class="musicvideo">
+                 <source src= 'pieces/zirlerMotet/videos/Cantus.mp4'>
+            </video>
+            <video   width = "15%" id= 'tenor' class="musicvideo">
+                 <source src= 'pieces/zirlerMotet/videos/Tenor.mp4'>
+            </video>
+            <video   width = "15%" id= 'bassus' class="musicvideo">
+                 <source src= 'pieces/zirlerMotet/videos/Bassus.mp4'>
+            </video>
+        </div>
+
+        <div class="col-xl-6" id="partdiv">
+
+
+          <img id="source" src="" width="0" height="0" alt="part">
+
+          <canvas id="thePart" width="100%"></canvas>
+        </div>
+      </div>
+
+          <audio src="pieces/zirlerMotet/videos/MasterAudio.m4a" id="audio" name="audio">
+              <p>Your browser does not support the <code>audio</code> element.</p>
+          </audio>
+
+
+           <script src="lib/musicapp2.js"></script>
+          <script>
+              // Initialize a new plugin instance for all
+              // e.g. $('input[type="range"]') elements.
+              //$('input[type="range"]').rangeslider();
+
+              // Destroy all plugin instances created from the
+              // e.g. $('input[type="range"]') elements.
+              //$('input[type="range"]').rangeslider('destroy');
+
+              // Update all rangeslider instances for all
+              // e.g. $('input[type="range"]') elements.
+              // Usefull if you changed some attributes e.g. `min` or `max` etc.
+              //$('input[type="range"]').rangeslider('update', true);
+          </script>
+
+
+    </div> <!-- /container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./demo_files/ie10-viewport-bug-workaround.js"></script>
+
+
+</body></html>

@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+<!--
+This is a version which allows us to select the piece to be played.
+The idea is to have a select box which changes the sources of the video
+and loads in new animations...
+
+For the animations, I think we will have all of the animations together
+in one JS file stored in an hashtable under the piece name ...
+
+-->
 <!-- saved from url=(0048)https://v4-alpha.getbootstrap.com/examples/grid/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -17,11 +26,11 @@
 
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" crossorigin="anonymous"></script>
 
-      <script src="pieces/zirlerMotet/animations/altus.js"></script>
-      <script src="pieces/zirlerMotet/animations/cantus.js"></script>
-      <script src="pieces/zirlerMotet/animations/bassus.js"></script>
-      <script src="pieces/zirlerMotet/animations/tenor.js"></script>
-        <script src="pieces/zirlerMotet/animations/score.js"></script>
+      <script src="pieces/ortoMotet/animations/altus.js"></script>
+      <script src="pieces/ortoMotet/animations/cantus.js"></script>
+      <script src="pieces/ortoMotet/animations/bassus.js"></script>
+      <script src="pieces/ortoMotet/animations/tenor.js"></script>
+        <script src="pieces/ortoMotet/animations/score.js"></script>
 
  <script src="lib/rangeslider.js"></script>
   <style type="text/css">/**
@@ -63,55 +72,86 @@
 .libx-autolink {
 }
 
+.noPadding {
+  !important;
+  margin:0px;
+  padding: 0px;
+  margin-top: -15px;
+  margin-bottom: -10px;
+  border:0px
+}
+
+.noPadding2 {
+  !important;
+  margin:0px;
+  padding: 0px;
+  margin-top: -35px;
+  margin-bottom: -10px;
+  border:0px
+}
+
 </style></head>
 
   <body>
-    <div class="container-fluid">
-      <span id="theTime">0.00</span>
-      <input
-        id="timeSlider"
-        type="range"
-        min="0"                    // default 0
-        max="100"                  // default 100
-        step="1"                   // default 1
-        value="0"                 // default min + (max-min)/2
-        data-orientation="vertical" // default horizontal
-    >
+    <div class="container-fluid noPadding">
+
+
         <div class="row">
-          <div class="col-xl-6">
-            <hr>
-            <video   width = "15%" id= 'score' class="musicvideo">
-                 <source src= 'pieces/zirlerMotet/videos/Master.mp4'>
+          <div class="col-xl-1">
+            <select id="thePiece" onChange="changePiece()">
+              <option value="ortoMotet">De Orto Motet</option>
+              <option value="zirlerMotet">Zirler Motet</option>
+            </select>
+            <span id="theTime">0.00</span>
+          </div>
+          <div class="col-xl-1">
+          </div>
+          <div class="col-xl-7 offset-xl-2 noPadding">
+            <video   width = "15%" id= 'notaltus' class="musicvideo noPadding">
+                 <source src= 'pieces/ortoMotet/videos/NotAltus.mp4'>
             </video>
-            <video   width = "15%" id= 'altus' class="musicvideo">
-                 <source src= 'pieces/zirlerMotet/videos/Altus.mp4'>
+
+            <video   width = "15%" id= 'altus' class="musicvideo noPadding">
+                 <source id="altus-source" src= 'pieces/ortoMotet/videos/Altus.mp4'>
             </video>
-            <video   width = "15%" id= 'cantus' class="musicvideo">
-                 <source src= 'pieces/zirlerMotet/videos/Cantus.mp4'>
+
+            <video   width = "15%" id= 'score' class="musicvideo noPadding">
+                 <source id="score-source" src= 'pieces/ortoMotet/videos/Master.mp4'>
             </video>
-            <video   width = "15%" id= 'tenor' class="musicvideo">
-                 <source src= 'pieces/zirlerMotet/videos/Tenor.mp4'>
+
+            <video   width = "15%" id= 'cantus' class="musicvideo noPadding">
+                 <source id="cantus-source" src= 'pieces/ortoMotet/videos/Cantus.mp4'>
             </video>
-            <video   width = "15%" id= 'bassus' class="musicvideo">
-                 <source src= 'pieces/zirlerMotet/videos/Bassus.mp4'>
+            <video   width = "15%" id= 'tenor' class="musicvideo noPadding">
+                 <source id="tenor-source" src='pieces/ortoMotet/videos/Tenor.mp4'>
+            </video>
+            <video   width = "15%" id= 'bassus' class="musicvideo noPadding">
+                 <source id="bassus-source" src= 'pieces/ortoMotet/videos/Bassus.mp4'>
             </video>
         </div>
+        <div class="col-xl-12" id="partdiv" class="noPadding2">
+          <input
+            id="timeSlider"
+            type="range"
+            min="0"                    // default 0
+            max="100"                  // default 100
+            step="1"                   // default 1
+            value="0"                 // default min + (max-min)/2
+            data-orientation="vertical" // default horizontal
+        >
 
-        <div class="col-xl-6" id="partdiv">
-
-
-          <img id="source" src="" width="0" height="0" alt="part">
+          <img id="source" class="noPadding2" src="" width="0" height="0" alt="part">
 
           <canvas id="thePart" width="100%"></canvas>
         </div>
       </div>
 
-          <audio src="pieces/zirlerMotet/videos/MasterAudio.m4a" id="audio" name="audio">
+          <audio src="pieces/ortoMotet/videos/MasterAudio.m4a" id="audio" name="audio">
               <p>Your browser does not support the <code>audio</code> element.</p>
           </audio>
 
 
-           <script src="lib/musicapp2.js"></script>
+           <script src="lib/musicapp4.js"></script>
           <script>
               // Initialize a new plugin instance for all
               // e.g. $('input[type="range"]') elements.

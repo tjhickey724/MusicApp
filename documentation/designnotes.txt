@@ -1,0 +1,28 @@
+Thu 7/1/2017
+
+Goals:
+1) create musicapp4a which will allow the user to switch the pieces (more work ...)
+   * switch the boxsize
+      use pieceData.boxSize
+      to update initialPartModel.boxHeight
+      when changing the part
+   * switch the image size when changing the piece --- DONE
+   * switch the animations -- DONE
+   * switch the layout CSS on video and the part divs ...
+   * restart on the score video at time zero
+   * use pieceData to access all of these fields and so just change
+     pieceData when changing the piece..
+
+2) use flexbox for positioning the screen elements
+   *
+3) record the animations for Orto and get the new videos..
+4) add the MasterMenu video with "M" key to select it
+
+
+10:23
+Copy musicapp2.js musicapp4.js and modify so it switches pieces..
+Select a new piece changes the video and part images appropriately.
+Still need to change the animations and the box size...
+
+10:50
+Work on using flexbox to restyle the page so that it looks good no matter the screen size ...

@@ -1,0 +1,76 @@
+
+div {
+  margin:0px;
+  padding:0px;
+}
+.chooser{
+  float:left;
+
+}
+#instructions td {
+  border:thin solid blue;
+  padding:20px;
+}
+
+#thePiece {
+  position:absolute;
+  right:0px;
+  top:0px;
+}
+.slider{
+  float:left;
+  clear:right;
+  width:100%;
+}
+#theTime {
+  padding-left:20px;
+  clear:left;
+}
+#timeSlider{
+  width:100%;
+}
+.pane {
+  background-image:url(https://previews.123rf.com/images/trompinex/trompinex1505/trompinex150500128/40191685-papyrus-texture-seamless-pattern-ridged-surface-Stock-Photo.jpg);
+}
+.ui-layout-north {
+  background-color:#aaccff;
+  background-image:url(https://previews.123rf.com/images/trompinex/trompinex1505/trompinex150500128/40191685-papyrus-texture-seamless-pattern-ridged-surface-Stock-Photo.jpg);
+  text-align:center;
+  padding:0px;
+  margin:0px;
+  font: bold 24pt fantasy
+}
+
+h1 {
+  padding:0px;
+  margin:0px;
+}
+
+
+.ui-layout-center {
+
+}
+.ui-layout-east {
+  background-color:azure;
+}
+.ui-layout-west {
+  background-color:turquoise;
+  width:50%;
+}
+
+.ui-layout-south {
+  background-color:magenta;
+}
+
+.slider{
+  width:80%
+}
+.chooser{
+  width:15%;
+  height: 20px;
+
+}
+
+.part{
+  width:100%
+}
