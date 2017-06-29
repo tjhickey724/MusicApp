@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!--
+This version uses the flexbox CSS style with no bootstrap ...
+
+-->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- link rel="icon" href="https://v4-alpha.getbootstrap.com/favicon.ico" -->
+
+    <title>MusicApp4a</title>
+
+
+
+    <!-- Custom styles for this template -->
+    <link href="./demo_files/grid.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" crossorigin="anonymous"></script>
+
+      <script src="pieces/ortoMotet/animations/altus.js"></script>
+      <script src="pieces/ortoMotet/animations/cantus.js"></script>
+      <script src="pieces/ortoMotet/animations/bassus.js"></script>
+      <script src="pieces/ortoMotet/animations/tenor.js"></script>
+        <script src="pieces/ortoMotet/animations/score.js"></script>
+
+ <script src="lib/rangeslider.js"></script>
+  <style type="text/css">/**
+ * Style sheet used by new LibX tooltip code
+ */
+
+/* We insert a <div> with libx-tooltip style under the body.
+ * This will inherit body's style - we can't afford to inherit undesirable
+ * styles and we must redefine what we need.  OTOH, some things, e.g.
+ * font-size, might be ok to be inherited to stay within the page's tone.
+ */
+.libx-tooltip {
+    display: none;
+    overflow: visible;
+    padding: 5px;
+    z-index: 100;
+    background-color: #eee;
+    color: #000;
+    font-weight: normal;
+    font-style: normal;
+    text-align: left;
+    border: 2px solid #666;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+
+#timeSlider{
+  width:100%
+}
+
+.libx-tooltip p {
+    /* override default 1em margin to keep paragraphs inside a tooltip closer together. */
+    margin: .2em;
+}
+</style>
+
+
+
+<style type="text/css">
+
+body {
+  background-color: brown
+}
+
+div {
+  padding:0px;
+  margin:0px;
+}
+
+.flex-container{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+
+  align-content:center;
+
+
+}
+
+.flexitem{
+  align-self: flex-start;
+
+  margin: 0px;
+  padding: 0px;
+
+  color: white;
+  font-weight: bold;
+  font-size: 3em;
+
+}
+
+.full-width {
+
+  width: 100%
+}
+.nopadding {
+  margin:0px;
+  padding:0px;
+}
+.video{
+  padding:0px;
+  margin:0px;
+  margin-top:20px;
+  padding-right:20%;
+  border-top:thin solid blue;
+  align-self:auto;
+
+}
+
+
+
+.slider{
+  width:80%
+}
+.chooser{
+  width:15%;
+  height: 20px;
+
+}
+
+.part{
+  width:100%;
+
+}
+
+#theTime {
+  font-size:10pt
+}
+
+video{
+  padding:0px;
+  margin:0px;
+
+}
+
+img{
+  padding:0px;
+  margin:0px;
+}
+
+div{
+  padding:0px;
+  margin:0px;
+}
+
+body{
+  padding:0px;
+  margin:0px;
+}
+
+
+</style></head>
+
+  <body>
+    <div class="flex-container">
+
+
+
+
+
+
+
+      <div class="video nopadding">
+
+            <video   width = "15%" id= 'altus' class="musicvideo noPadding">
+                 <source id="altus-source" src= 'pieces/ortoMotet/videos/Altus.mp4'>
+            </video>
+
+            <video   width = "15%" id= 'score' class="musicvideo noPadding">
+                 <source id="score-source" src= 'pieces/ortoMotet/videos/Master.mp4'>
+            </video>
+
+            <video   width = "15%" id= 'mastermenu' class="musicvideo noPadding">
+                 <source id="mastermenu-source" src= 'pieces/ortoMotet/videos/MasterMenu.mp4'>
+            </video>
+
+            <video   width = "15%" id= 'cantus' class="musicvideo noPadding">
+                 <source id="cantus-source" src= 'pieces/ortoMotet/videos/Cantus.mp4'>
+            </video>
+            <video   width = "15%" id= 'tenor' class="musicvideo noPadding">
+                 <source id="tenor-source" src='pieces/ortoMotet/videos/Tenor.mp4'>
+            </video>
+            <video   width = "15%" id= 'bassus' class="musicvideo noPadding">
+                 <source id="bassus-source" src= 'pieces/ortoMotet/videos/Bassus.mp4'>
+            </video>
+        </div>
+
+
+
+        <div class="flexitem chooser">
+            <select id="thePiece" onChange="changePiece()">
+              <option value="ortoMotet">De Orto Motet</option>
+              <option value="zirlerMotet">Zirler Motet</option>
+            </select>
+            <span id="theTime">0.00</span>
+        </div>
+
+        <div class="flexitem slider nopadding">
+
+          <input
+            id="timeSlider"
+            type="range"
+            min="0"                    // default 0
+            max="100"                  // default 100
+            step="1"                   // default 1
+            value="0"                 // default min + (max-min)/2
+            data-orientation="vertical" // default horizontal
+          >
+        </div>
+
+
+
+
+        <div id="partdiv" class="part nopadding">
+
+          <img id="source" class="noPadding2" src="" width="0" height="0" alt="part">
+
+          <canvas id="thePart" width="100%"></canvas>
+      </div>
+  </div>
+
+
+
+           <script src="lib/animations.js"></script>
+            <script src="lib/musicapp4.js"></script>
+          <script>
+              // Initialize a new plugin instance for all
+              // e.g. $('input[type="range"]') elements.
+              //$('input[type="range"]').rangeslider();
+
+              // Destroy all plugin instances created from the
+              // e.g. $('input[type="range"]') elements.
+              //$('input[type="range"]').rangeslider('destroy');
+
+              // Update all rangeslider instances for all
+              // e.g. $('input[type="range"]') elements.
+              // Usefull if you changed some attributes e.g. `min` or `max` etc.
+              //$('input[type="range"]').rangeslider('update', true);
+          </script>
+
+
+    </div> <!-- /container -->
+
+
+
+
+</body></html>

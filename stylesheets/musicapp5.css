@@ -55,7 +55,7 @@ h1 {
 }
 .ui-layout-west {
   background-color:turquoise;
-  width:50%;
+
 }
 
 .ui-layout-south {
@@ -63,10 +63,11 @@ h1 {
 }
 
 .slider{
-  width:80%
+ width:85%;
 }
+
 .chooser{
-  width:15%;
+  width:10%;
   height: 20px;
 
 }
