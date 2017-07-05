@@ -33,7 +33,7 @@ div {
 }
 .ui-layout-north {
   background-color:#aaccff;
-  background-image:url(https://previews.123rf.com/images/trompinex/trompinex1505/trompinex150500128/40191685-papyrus-texture-seamless-pattern-ridged-surface-Stock-Photo.jpg);
+  background-image:url(https://i2.wp.com/www.ucreative.com/wp-content/uploads/2010/08/24-free-high-res-394.jpg?resize=500%2C300);
   text-align:center;
   padding:0px;
   margin:0px;
@@ -47,18 +47,27 @@ h1 {
 
 
 .ui-layout-center {
+background-color:#d6d6c2;
+background-image:url(http://img10.deviantart.net/b4b6/i/2004/176/4/1/desk_texture.jpg);
 
 }
+
+.ui-layout-east h1{
+  font-size:12pt;
+}
+
 .ui-layout-east {
-  background-color:azure;
+  background-color:#ffcc66;
+  font:9pt Times,serif;
 }
 .ui-layout-west {
-  background-color:turquoise;
+  background-color:#ffe6b3;
 
 }
 
 .ui-layout-south {
-  background-color:magenta;
+  background-image:url(https://i2.wp.com/www.ucreative.com/wp-content/uploads/2010/08/24-free-high-res-394.jpg?resize=500%2C300);
+  font:11pt Times,serif;
 }
 
 .slider{
