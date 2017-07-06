@@ -1,11 +1,16 @@
 
 Thu 7/1/2017
-1. Fix it so it starts nicely with 40% 40% 20%
-2. Add pause button
-3. Fix behavior when piece ends
-4. Allow for description of piece to appear in east pane
-5. Fix width of the video
-Get to a Beta Version ASAP.... Ship date is 7/21/2017
+* Fix it so it starts nicely with 40% 40% 20% and shows the music animation ...
+  start with a blank table ...
+
+* Fix behavior when piece ends
+PARTLY DONE * Allow for description of piece to appear in east pane
+DONE * Add pause button
+* Fix width of the video
+* Get to a Beta Version ASAP.... Ship date is 7/21/2017
+
+* Create info page about how to download and run LookHear ...
+
 
 
 =======

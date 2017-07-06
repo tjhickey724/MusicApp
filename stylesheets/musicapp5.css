@@ -1,4 +1,25 @@
 
+.lookhear {
+  font: bold 18pt fantasy
+}
+
+.desctitle {
+  font-weight:bold;
+  font-style:italic;
+  font-size:larger;
+}
+.insttitle {
+  font-weight:bold;
+  font-size:larger;
+}
+h1 {
+  margin:0px !important;
+}
+p#description {
+  margin-top: -30px;
+  font: 10pt 'Times New Roman'
+}
+
 div {
   margin:0px;
   padding:0px;
@@ -39,6 +60,7 @@ div {
   margin:0px;
   font: bold 24pt fantasy
 }
+
 
 h1 {
   padding:0px;
