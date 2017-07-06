@@ -1,5 +1,5 @@
 select#thePiece {
-  font:bold 18pt fantasy
+  font: 16pt 'Times New Roman'
 }
 
 .lookhear {
@@ -11,10 +11,12 @@ select#thePiece {
   font-style:italic;
   font-size:larger;
 }
+
 .insttitle {
   font-weight:bold;
   font-size:larger;
 }
+
 h1 {
   margin:0px !important;
 }

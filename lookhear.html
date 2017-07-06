@@ -1,259 +1,228 @@
 <!DOCTYPE html>
-<!--
-This version uses the flexbox CSS style with no bootstrap ...
+<html>
+<head>
+	<title>LookHear</title>
 
--->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="This is the LookHear Music App">
+  <meta name="author" content="Sarah Mead and Timothy Hickey">
+  <!-- link rel="icon" href="https://v4-alpha.getbootstrap.com/favicon.ico" -->
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- link rel="icon" href="https://v4-alpha.getbootstrap.com/favicon.ico" -->
 
-    <title>MusicApp4a</title>
+  <link type="text/css" rel="stylesheet" href="stylesheets/layout-default.css">
 
-
-
-    <!-- Custom styles for this template -->
-    <link href="./demo_files/grid.css" rel="stylesheet">
-
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" crossorigin="anonymous"></script>
-
-      <script src="pieces/ortoMotet/animations/altus.js"></script>
-      <script src="pieces/ortoMotet/animations/cantus.js"></script>
-      <script src="pieces/ortoMotet/animations/bassus.js"></script>
-      <script src="pieces/ortoMotet/animations/tenor.js"></script>
-        <script src="pieces/ortoMotet/animations/score.js"></script>
+	<style type="text/css">
+	html, body {
+		background:	#666;
+		width:		100%;
+		height:		100%;
+		padding:	0;
+		margin:		0;
+		overflow:	auto; /* when page gets too small */
+	}
+	#container {
+		background:	#999;
+		height:		100%;
+		margin:		0 auto;
+		width:		100%;
+		max-width:	2900px;
+		min-width:	70px;
+		_width:		700px; /* min-width for IE6 */
+	}
+	.pane {
+		display:	none; /* will appear when layout inits */
+
+  .slider, #timeSlider{
+      width:100%
+    }
+	}
+	</style>
+
+  <link type="text/css" rel="stylesheet" href="stylesheets/musicapp5.css">
+
+
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/jquery.layout.js"></script>
+	<script type="text/javascript" src="js2/layoutsave.js"></script>
+
+  <script src="pieces/ortoMotet/animations/altus.js"></script>
+  <script src="pieces/ortoMotet/animations/cantus.js"></script>
+  <script src="pieces/ortoMotet/animations/bassus.js"></script>
+  <script src="pieces/ortoMotet/animations/tenor.js"></script>
+  <script src="pieces/ortoMotet/animations/score.js"></script>
+
+  <script src="lib/rangeslider.js"></script>
+
+
+	<script type="text/javascript">
+
+	$(document).ready(function(){
+		$('#container').layout();
+	});
+
+	</script>
+
+
+</head>
+<body>
+<div id="container" class="flex-container">
+  <div class="pane ui-layout-north">
+    <h1>LookHear</h1>
+			<p id="description">An insider’s view of 16th-c polyphony: its notation and its sound - developed by Timothy Hickey & Sarah Mead</p>
+
+    <select id="thePiece" onChange="changePiece()">
+			<option> Select a piece </option>
+      <option value="ortoMotet"> De Orto: Ave Maria</option>
+      <option value="zirlerMotet">Zirler: Beati omnes</option>
+    </select>
+				<button onclick="resizePart()" style="float:right">refresh</button>
+
+  </div>
+
+	<div class="pane ui-layout-center">
+
+<span id="theTime">0.00</span>
+
+    <div class="slider">
+
+      <input
+        id="timeSlider"
+        type="range"
+        min="0"                    // default 0
+        max="100"                  // default 100
+        step="1"                   // default 1
+        value="0"                 // default min + (max-min)/2
+        data-orientation="vertical" // default horizontal
+        width="100%"
+      >
+    </div>
+
+
+
 
- <script src="lib/rangeslider.js"></script>
-  <style type="text/css">/**
- * Style sheet used by new LibX tooltip code
- */
+    <div id="partdiv" class="part nopadding">
+
+      <img id="source" class="noPadding2" src="" width="0" height="0" alt="part">
+
+      <canvas id="thePart" width="100%"></canvas>
+   </div>
+  </div>
+
+	<div class="pane ui-layout-south">
+    <h3>How to use <span class="lookhear">LookHear</span></h3>
+<br>
+<p id="description">
+<span class="insttitle">Choose a piece from the menu in the upper-right corner:</span><br>
+The left-hand window lets you watch the players; the center window displays the notation.<br>
+Adjust the relative size of the windows by clicking and sliding the dividing-bar.<br>
+Close or open any window by clicking the center of the dividing-bar.
+</p>
+<br>
+<br>
+<p id="description">
+<span class="insttitle">Navigate with the letter keys:</span><br>
+Choose to watch the full group (S) or all five camera-angles (X) alongside the modern score.<br>
+Navigate among the individual parts to see the original notation:
+Cantus (C), Altus (A), Tenor (T) and Bassus (B)
+</p>
+<br>
+<br>
+<p id="description">
+<span class="insttitle">Play the music:</span><br>
+Use the time-slider to fast-forward or move to a specific point in the music.<br>
+Press the P key to Pause and Play.
+Press the S key to return to the Start of the piece.
+</p>
 
-/* We insert a <div> with libx-tooltip style under the body.
- * This will inherit body's style - we can't afford to inherit undesirable
- * styles and we must redefine what we need.  OTOH, some things, e.g.
- * font-size, might be ok to be inherited to stay within the page's tone.
- */
-.libx-tooltip {
-    display: none;
-    overflow: visible;
-    padding: 5px;
-    z-index: 100;
-    background-color: #eee;
-    color: #000;
-    font-weight: normal;
-    font-style: normal;
-    text-align: left;
-    border: 2px solid #666;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-}
-
-#timeSlider{
-  width:100%
-}
-
-.libx-tooltip p {
-    /* override default 1em margin to keep paragraphs inside a tooltip closer together. */
-    margin: .2em;
-}
-</style>
-
-
-
-<style type="text/css">
-
-body {
-  background-color: brown
-}
-
-div {
-  padding:0px;
-  margin:0px;
-}
-
-.flex-container{
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-
-  -webkit-flex-flow: row wrap;
-  flex-flow: row wrap;
-
-  align-content:center;
-
-
-}
-
-.flexitem{
-  align-self: flex-start;
-
-  margin: 0px;
-  padding: 0px;
-
-  color: white;
-  font-weight: bold;
-  font-size: 3em;
-
-}
-
-.full-width {
-
-  width: 100%
-}
-.nopadding {
-  margin:0px;
-  padding:0px;
-}
-.video{
-  padding:0px;
-  margin:0px;
-  margin-top:20px;
-  padding-right:20%;
-  border-top:thin solid blue;
-  align-self:auto;
-
-}
-
-
-
-.slider{
-  width:80%
-}
-.chooser{
-  width:15%;
-  height: 20px;
-
-}
-
-.part{
-  width:100%;
-
-}
-
-#theTime {
-  font-size:10pt
-}
-
-video{
-  padding:0px;
-  margin:0px;
-
-}
-
-img{
-  padding:0px;
-  margin:0px;
-}
-
-div{
-  padding:0px;
-  margin:0px;
-}
-
-body{
-  padding:0px;
-  margin:0px;
-}
-
-
-</style></head>
-
-  <body>
-    <div class="flex-container">
-
-
-
-
-
-
-
-      <div class="video nopadding">
-
-            <video   width = "15%" id= 'altus' class="musicvideo noPadding">
-                 <source id="altus-source" src= 'pieces/ortoMotet/videos/Altus.mp4'>
-            </video>
-
-            <video   width = "15%" id= 'score' class="musicvideo noPadding">
-                 <source id="score-source" src= 'pieces/ortoMotet/videos/Master.mp4'>
-            </video>
-
-            <video   width = "15%" id= 'mastermenu' class="musicvideo noPadding">
-                 <source id="mastermenu-source" src= 'pieces/ortoMotet/videos/MasterMenu.mp4'>
-            </video>
-
-            <video   width = "15%" id= 'cantus' class="musicvideo noPadding">
-                 <source id="cantus-source" src= 'pieces/ortoMotet/videos/Cantus.mp4'>
-            </video>
-            <video   width = "15%" id= 'tenor' class="musicvideo noPadding">
-                 <source id="tenor-source" src='pieces/ortoMotet/videos/Tenor.mp4'>
-            </video>
-            <video   width = "15%" id= 'bassus' class="musicvideo noPadding">
-                 <source id="bassus-source" src= 'pieces/ortoMotet/videos/Bassus.mp4'>
-            </video>
-        </div>
-
-
-
-        <div class="flexitem chooser">
-            <select id="thePiece" onChange="changePiece()">
-              <option value="ortoMotet">De Orto Motet</option>
-              <option value="zirlerMotet">Zirler Motet</option>
-            </select>
-            <span id="theTime">0.00</span>
-        </div>
-
-        <div class="flexitem slider nopadding">
-
-          <input
-            id="timeSlider"
-            type="range"
-            min="0"                    // default 0
-            max="100"                  // default 100
-            step="1"                   // default 1
-            value="0"                 // default min + (max-min)/2
-            data-orientation="vertical" // default horizontal
-          >
-        </div>
-
-
-
-
-        <div id="partdiv" class="part nopadding">
-
-          <img id="source" class="noPadding2" src="" width="0" height="0" alt="part">
-
-          <canvas id="thePart" width="100%"></canvas>
-      </div>
   </div>
 
 
+	<div class="pane ui-layout-east" style="width:50%">
+		<h1>The Music</h1>
 
-           <script src="lib/animations.js"></script>
-            <script src="lib/musicapp4.js"></script>
-          <script>
-              // Initialize a new plugin instance for all
-              // e.g. $('input[type="range"]') elements.
-              //$('input[type="range"]').rangeslider();
+		<div class="partintro description">
+			Select a piece of music using the menu in the upper right corner of the screen.
+		</div>
 
-              // Destroy all plugin instances created from the
-              // e.g. $('input[type="range"]') elements.
-              //$('input[type="range"]').rangeslider('destroy');
+		<div class="ortoMotet description">
 
-              // Update all rangeslider instances for all
-              // e.g. $('input[type="range"]') elements.
-              // Usefull if you changed some attributes e.g. `min` or `max` etc.
-              //$('input[type="range"]').rangeslider('update', true);
-          </script>
+			<p>
+				Marbrianus de Orto (c.1460-1529)<br>
+				<i>Ave Maria gratia plena</i><br>
+				4-voice motet based on plainsong melody
+			</p>
+			<p>
+				<span class="desctitle">Source:</span><br>
+				Petrucci: <i>Harmonice musices odhecaton A</i> (Venice, 1501)<br>
+				Single book with all parts on facing pages<br>
+				1st piece [A3v-A4r] of 96 in the collection<br>
+			</p>
+			<p>
+				<span class="desctitle">Performers:</span><br>
+				<b>Nota Bene</b> viol consort<br>
+				<i>Cantus:</i> Sarah Mead<br>
+				<i>Altus:</i> Wendy Gillespie<br>
+				<i>Tenor:</i> Joanna Blendulf<br>
+				<i>Bassus:</i> Emily Walhout
+			</p>
+		</div>
+
+		<div class="zirlerMotet description">
+			<p>
+				Stephan Zirler (c.1518-1568)<br>
+				<i>Beati omnes qui timent Dominum</i><br>
+				4-voice motet
+			</p>
+			<p>
+				<span class="desctitle">Source:</span><br>
+				Stephani: <i>Beati omnes. Psalmus CXXVII. Davidis.</i> (Nuremberg, 1569) <br>
+				Four individual partbooks containing multiple settings of Psalm 128
+				in 6, 5, and 4 parts<br>
+				15th [XV] of 17 settings by different composers<br>
+			</p>
+			<p>
+				<span class="desctitle">Performers:</span><br>
+				<b>Nota Bene</b> viol consort<br>
+				<i>Cantus:</i> Wendy Gillespie<br>
+				<i>Altus:</i> Sarah Mead<br>
+				<i>Tenor:</i> Joanna Blendulf<br>
+				<i>Bassus:</i> Emily Walhout
+			</p>
+		</div>
+
+  </div>
+
+	<div class="pane ui-layout-west">
+    <div class="video nopadding">
+
+          <video   width = "0%" id= 'altus' class="musicvideo noPadding">
+               <source id="altus-source" src= 'pieces/ortoMotet/videos/Altus.mp4'>
+          </video>
+
+          <video   width = "0%" id= 'score' class="musicvideo noPadding">
+               <source id="score-source" src= 'pieces/ortoMotet/videos/Master.mp4'>
+          </video>
+
+          <video   width = "0%" id= 'cantus' class="musicvideo noPadding">
+               <source id="cantus-source" src= 'pieces/ortoMotet/videos/Cantus.mp4'>
+          </video>
+          <video   width = "0%" id= 'tenor' class="musicvideo noPadding">
+               <source id="tenor-source" src='pieces/ortoMotet/videos/Tenor.mp4'>
+          </video>
+          <video   width = "0%" id= 'bassus' class="musicvideo noPadding">
+               <source id="bassus-source" src= 'pieces/ortoMotet/videos/Bassus.mp4'>
+          </video>
+          <video   width = "0%" id= 'mastermenu' class="musicvideo noPadding">
+               <source id="mastermenu-source" src= 'pieces/ortoMotet/videos/MasterMenu.mp4'>
+          </video>
+      </div>
 
 
-    </div> <!-- /container -->
+  </div>
+</div>
 
-
-
-
-</body></html>
+ <script src="lib/animations.js"></script>
+ <script src="lib/musicapp4.js"></script>
+</body>
+</html>
