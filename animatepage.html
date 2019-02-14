@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Animation Page</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="This is the animation page of the LookHear Music App">
+  <meta name="author" content="Sarah Mead and Timothy Hickey">
+  <!-- link rel="icon" href="https://v4-alpha.getbootstrap.com/favicon.ico" -->
+
+  <link type="text/css" rel="stylesheet" href="stylesheets/layout-default.css">
+
+	<style type="text/css">
+
+  /*
+    COLOR SCHEME USED
+    Natural and Earthy from https://vismo.co/blog/website-color-schemes
+    #8D8741 Brown-Green
+    #659DBD Medium Blue
+    #DAAD86 Light Brown
+    #BC986A Dark Brown
+    #FBEEC1 Pale Brown
+  */
+
+	html, body {
+		background:	#666;
+		width:		100%;
+		height:		100%;
+		padding:	0;
+		margin:		0;
+		overflow:	auto; /* when page gets too small */
+	}
+	#container {
+		background:	#999;
+		height:		100%;
+		margin:		0 auto;
+		width:		100%;
+		max-width:	2900px;
+		min-width:	70px;
+		_width:		700px; /* min-width for IE6 */
+	}
+	.pane {
+		display:	none; /* will appear when layout inits */
+
+  /*
+    START CONTROL PANEL STYLE
+    Styling for control panel buttons
+    on bottom of screen such as play
+    record, and time slider
+  */
+
+  .slider, #timeSlider{
+      width:100%
+    }
+	}
+  .control-panel > button {
+      margin: 1px 1px 1px 1px;
+      background-color: #FBEEC1; /* Green */
+      border: solid black 1px;
+      display: inline-block;
+      font-size: 25px;
+      border-radius: 10%;
+      cursor: pointer;
+      -webkit-transition-duration: 0.4s;
+      transition-duration: 0.4s;
+  }
+  .control-panel button:hover {
+    background-color: #BC986A;
+  }
+  .control-panel button:focus {
+    outline: 0;
+  }
+
+  /* END CONTROL PANEL STYLE */
+
+  /*
+    START UPPER STYLE
+    Styling for drop menus, instructions, and greeting
+  */
+
+  #helpbox, #dropMenu {
+    width: 25%;
+    float: left;
+  }
+  #welcomeText {
+    float: left;
+    width: 50%;
+  }
+  #helpbox p {
+    font-size: 12px;
+    align-items: center;
+  }
+  #dropMenu select {
+    width: 45%;
+    display: inline;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #FBEEC1;
+  }
+  #dropMenu select:focus {
+    outline: 0;
+  }
+
+  /* END UPPER STYLE */
+	</style>
+
+  <link type="text/css" rel="stylesheet" href="stylesheets/musicapp5.css">
+
+
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/jquery.layout.js"></script>
+	<script type="text/javascript" src="js2/layoutsave.js"></script>
+
+  <script src="pieces/ortoMotet/animations/altus.js"></script>
+  <script src="pieces/ortoMotet/animations/cantus.js"></script>
+  <script src="pieces/ortoMotet/animations/bassus.js"></script>
+  <script src="pieces/ortoMotet/animations/tenor.js"></script>
+  <script src="pieces/ortoMotet/animations/score.js"></script>
+
+  <script src="lib/rangeslider.js"></script>
+
+
+	<script type="text/javascript">
+
+	$(document).ready(function(){
+		$('#container').layout();
+	});
+
+	</script>
+
+
+</head>
+<body>
+
+<!-- START NORTH PANEL -->
+<div id="container" class="flex-container">
+  <div class="pane ui-layout-north">
+    <div id="helpbox">
+      <div style="width: 98%; font-size: 14px; float: left; display: inline">
+        <p>
+          Press Q to record<br>
+          Press W to reset<br>
+          Press Z to add a note<br>
+					Press X to pause<br>
+        </p>
+      </div>
+			<!--
+      <div style="width: 48%; float: left; display: inline">
+        <p>
+          Press p to record<br>
+          Press z to place a marker<br>
+          Press x to pause<br>
+        </p>
+      </div>
+		-->
+    </div>
+
+    <div id="welcomeText">
+    <h1>Animation Page</h1>
+    <p id="description">This is the page to animate the notation for LookHear.<p>
+    </div>
+
+    <div id="dropMenu">
+      <select>
+        <option> Select a piece </option>
+        <option value="ortoMotet"> De Orto: Ave Maria</option>
+        <option value="zirlerMotet">Zirler: Beati omnes</option>
+      </select>
+
+      <select>
+        <option> Select a part </option>
+        <option value="">Cantus</option>
+        <option value="">Altus</option>
+        <option value="">Tenor</option>
+        <option value="">Bassus</option>
+      </select>
+    </div>
+</div>
+<!-- END NORTH PANEL -->
+
+<!-- START CENTER PANEL -->
+
+	<div class="pane ui-layout-center">
+
+  </div>
+
+<!-- END CENTER PANEL -->
+
+<!-- START SOUTH PANEL-->
+	<div class="pane ui-layout-south">
+
+        <span id="theTime">0.00</span>
+        <div class="slider" style="width: 95%">
+          <input
+            id="timeSlider"
+            type="range"
+            min="0"                    // default 0
+            max="100"                  // default 100
+            step="1"                   // default 1
+            value="0"                 // default min + (max-min)/2
+            data-orientation="vertical" // default horizontal
+            width="100%"
+          >
+        </div>
+
+  <!-- START CONTROL PANEL -->
+  <div class="control-panel control-panel-buttons">
+    <button style="align-items: start; margin: 8px 8px 8px 8px; font-size: 22px; display: inline">Start</button>
+    <p style="display: inline"> Starts in 5 seconds...</p>
+    <br>
+    <div class="control-panel control-panel-speed-buttons">
+      <h2 style="display: inline; margin-right: 5px; text-transform: uppercase">Speed: </h2>
+      <button>1</button>
+      <button>1/2</button>
+      <button>1/4</button>
+      <button>1/8</button>
+    </div>
+    <br>
+    <button>Reset the current playback</button>
+    <button style="float: right">Upload</button>
+    <button style="float: right">Preview</button>
+  </div>
+  <!-- END CONTROL PANEL -->
+
+</div>
+
+<!-- END SOUTH PANEL -->
+
+ <script src="lib/animations.js"></script>
+ <script src="lib/musicapp4.js"></script>
+</body>
+</html>
