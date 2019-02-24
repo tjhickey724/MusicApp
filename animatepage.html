@@ -55,14 +55,20 @@
 	}
   .control-panel > button {
       margin: 1px 1px 1px 1px;
-      background-color: #FBEEC1; /* Green */
+      background-color: #FBEEC1;
       border: solid black 1px;
       display: inline-block;
-      font-size: 25px;
+      font-size: 12px;
       border-radius: 10%;
       cursor: pointer;
       -webkit-transition-duration: 0.4s;
       transition-duration: 0.4s;
+  }
+  .control-panel > input {
+    border-radius: 10%;
+    cursor: pointer;
+    background-color: #FBEEC1;
+    outline: none;
   }
   .control-panel button:hover {
     background-color: #BC986A;
@@ -128,6 +134,18 @@
 	});
 
 	</script>
+  <link rel="stylesheet" href="stylesheets/scoreapp.css">
+  <script src="pieces/zirlerMotet/animations/altus.js"></script>
+  <script src="pieces/zirlerMotet/animations/cantus.js"></script>
+  <script src="pieces/zirlerMotet/animations/bassus.js"></script>
+  <script src="pieces/zirlerMotet/animations/tenor.js"></script>
+    <script src="pieces/zirlerMotet/animations/score.js"></script>
+
+  <!-- http://rangeslider.js.org/ -->
+  <script src="lib/rangeslider.js"></script>
+
+  <style href="stylesheets/scoreapp.css"></style>
+  <style href="stylesheets/rangeslider.css"></style>
 
 
 </head>
@@ -168,12 +186,13 @@
         <option value="zirlerMotet">Zirler: Beati omnes</option>
       </select>
 
-      <select>
-        <option> Select a part </option>
-        <option value="">Cantus</option>
-        <option value="">Altus</option>
-        <option value="">Tenor</option>
-        <option value="">Bassus</option>
+      <select id="part">
+        <option></option>
+        <option>cantus</option>
+        <option>altus</option>
+        <option>tenor</option>
+        <option>bassus</option>
+        <option>score</option>
       </select>
     </div>
 </div>
@@ -182,7 +201,59 @@
 <!-- START CENTER PANEL -->
 
 	<div class="pane ui-layout-center">
+  <div class="control-panel control-panel-buttons">
+    <button id="playback" class="control-panel control-panel-speed-buttons">Playback</button>
+      <h4 style="display: inline; margin-right: 5px;">Speed: </h4>
+      <input type="text" id="playbackRate" value="1.0" size="5">
+      <h4 style="display: inline; margin-right: 5px;">Box Size: </h4>
+      <input type="text" id="boxHeight" value="15" size="5">
+      <button id="initPart" class="control-panel control-panel-speed-buttons">Init Part/Change Options</button>
+      <button id="save" style="float: right">Save Animation/Upload</button>
+      </div>
+    <hr>
 
+        <input
+          id="timeSlider"
+          type="range"
+          min="0"                    // default 0
+          max="100"                  // default 100
+          step="1"                   // default 1
+          value="0"                 // default min + (max-min)/2
+          data-orientation="vertical" // default horizontal
+      >
+  <!--
+        <input
+          id="timeSlider2"
+          type="range"
+          min="0"                    // default 0
+          max="100"                  // default 100
+          step="1"                   // default 1
+          value="0"                 // default min + (max-min)/2
+          data-orientation="vertical" // default horizontal
+      >
+    -->
+      <audio src="pieces/zirlerMotet/videos/MasterAudio.m4a" id="audio" name="audio">
+          <p>Your browser does not support the <code>audio</code> element.</p>
+      </audio>
+      <div id="partdiv" class="part nopadding">
+        <img id="source" class="noPadding2" src="" width="0" height="0" alt="part">
+        <canvas id="thePart" width="10%"></canvas>
+      </div>
+       <script src="lib/scoreapp.js"></script>
+      <script>
+          // Initialize a new plugin instance for all
+          // e.g. $('input[type="range"]') elements.
+          //$('input[type="range"]').rangeslider();
+
+          // Destroy all plugin instances created from the
+          // e.g. $('input[type="range"]') elements.
+          //$('input[type="range"]').rangeslider('destroy');
+
+          // Update all rangeslider instances for all
+          // e.g. $('input[type="range"]') elements.
+          // Usefull if you changed some attributes e.g. `min` or `max` etc.
+          //$('input[type="range"]').rangeslider('update', true);
+      </script>
   </div>
 
 <!-- END CENTER PANEL -->
@@ -190,35 +261,24 @@
 <!-- START SOUTH PANEL-->
 	<div class="pane ui-layout-south">
 
-        <span id="theTime">0.00</span>
-        <div class="slider" style="width: 95%">
-          <input
-            id="timeSlider"
-            type="range"
-            min="0"                    // default 0
-            max="100"                  // default 100
-            step="1"                   // default 1
-            value="0"                 // default min + (max-min)/2
-            data-orientation="vertical" // default horizontal
-            width="100%"
-          >
-        </div>
 
   <!-- START CONTROL PANEL -->
   <div class="control-panel control-panel-buttons">
-    <button style="align-items: start; margin: 8px 8px 8px 8px; font-size: 22px; display: inline">Start</button>
+    <button id="initPart" style="align-items: start; margin: 8px 8px 8px 8px; font-size: 22px; display: inline">Start</button>
     <p style="display: inline"> Starts in 5 seconds...</p>
     <br>
     <div class="control-panel control-panel-speed-buttons">
       <h2 style="display: inline; margin-right: 5px; text-transform: uppercase">Speed: </h2>
-      <button>1</button>
-      <button>1/2</button>
-      <button>1/4</button>
-      <button>1/8</button>
+      <input type="text" id="playbackRate" value="1.0" size="5">
     </div>
     <br>
-    <button>Reset the current playback</button>
-    <button style="float: right">Upload</button>
+    <div class="control-panel control-panel-speed-buttons">
+      <h2 style="display: inline; margin-right: 5px; text-transform: uppercase">Box Size: </h2>
+      <input type="text" id="boxHeight" value="15" size="5">
+    </div>
+    <br>
+    <button id="playback">Playback</button>
+    <button id="save" style="float: right">Save Animation/Upload</button>
     <button style="float: right">Preview</button>
   </div>
   <!-- END CONTROL PANEL -->
@@ -226,8 +286,5 @@
 </div>
 
 <!-- END SOUTH PANEL -->
-
- <script src="lib/animations.js"></script>
- <script src="lib/musicapp4.js"></script>
 </body>
 </html>
