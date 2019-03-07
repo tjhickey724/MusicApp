@@ -76,6 +76,13 @@
   .control-panel button:focus {
     outline: 0;
   }
+	.control-box {
+		padding: 10px 3px 3px 1px;
+		position: fixed;
+		width: 98%;
+		background-color: #BC986A;
+		border-radius: 2.5%;
+	}
 
   /* END CONTROL PANEL STYLE */
 
@@ -163,15 +170,6 @@
 					Press X to pause<br>
         </p>
       </div>
-			<!--
-      <div style="width: 48%; float: left; display: inline">
-        <p>
-          Press p to record<br>
-          Press z to place a marker<br>
-          Press x to pause<br>
-        </p>
-      </div>
-		-->
     </div>
 
     <div id="welcomeText">
@@ -201,6 +199,7 @@
 <!-- START CENTER PANEL -->
 
 	<div class="pane ui-layout-center">
+	<div class="control-box">
   <div class="control-panel control-panel-buttons">
     <button id="playback" class="control-panel control-panel-speed-buttons">Playback</button>
       <h4 style="display: inline; margin-right: 5px;">Speed: </h4>
@@ -210,7 +209,6 @@
       <button id="initPart" class="control-panel control-panel-speed-buttons">Init Part/Change Options</button>
       <button id="save" style="float: right">Save Animation/Upload</button>
       </div>
-    <hr>
 
         <input
           id="timeSlider"
@@ -221,6 +219,7 @@
           value="0"                 // default min + (max-min)/2
           data-orientation="vertical" // default horizontal
       >
+		</div>
   <!--
         <input
           id="timeSlider2"
@@ -235,6 +234,7 @@
       <audio src="pieces/zirlerMotet/videos/MasterAudio.m4a" id="audio" name="audio">
           <p>Your browser does not support the <code>audio</code> element.</p>
       </audio>
+			<br><br><br><br>
       <div id="partdiv" class="part nopadding">
         <img id="source" class="noPadding2" src="" width="0" height="0" alt="part">
         <canvas id="thePart" width="10%"></canvas>
@@ -258,11 +258,11 @@
 
 <!-- END CENTER PANEL -->
 
-<!-- START SOUTH PANEL-->
+<!-- START SOUTH PANEL
 	<div class="pane ui-layout-south">
 
 
-  <!-- START CONTROL PANEL -->
+  START CONTROL PANEL
   <div class="control-panel control-panel-buttons">
     <button id="initPart" style="align-items: start; margin: 8px 8px 8px 8px; font-size: 22px; display: inline">Start</button>
     <p style="display: inline"> Starts in 5 seconds...</p>
@@ -281,10 +281,11 @@
     <button id="save" style="float: right">Save Animation/Upload</button>
     <button style="float: right">Preview</button>
   </div>
-  <!-- END CONTROL PANEL -->
+  END CONTROL PANEL
 
 </div>
 
-<!-- END SOUTH PANEL -->
+END SOUTH PANEL -->
+
 </body>
 </html>
